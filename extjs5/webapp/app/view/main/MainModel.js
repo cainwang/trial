@@ -7,8 +7,13 @@ Ext.define('extjs5.view.main.MainModel', {
     alias: 'viewmodel.main',
 
     data: {
-        name: 'extjs5'
-    }
+        firstName: 'Cain',
+        lastName: 'Templar'
+    },
 
-    //TODO - add data, formulas and/or methods to support your view
+    formulas: {
+        fullName: function(get) {
+            return get('firstName') + ' ' + get('lastName');
+        }
+    }
 });

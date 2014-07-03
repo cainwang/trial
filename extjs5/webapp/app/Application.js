@@ -5,7 +5,7 @@
  */
 Ext.define('extjs5.Application', {
     extend: 'Ext.app.Application',
-    
+
     name: 'extjs5',
 
     views: [
