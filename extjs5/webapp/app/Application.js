@@ -8,20 +8,14 @@ Ext.define('extjs5.Application', {
 
     name: 'extjs5',
 
-    views: [
-        // TODO: add views here
-    ],
+    defaultToken: 'main',
 
-    controllers: [
-        'Root'
-        // TODO: add controllers here
-    ],
+    views: [ 'content.ContentPane' ],
 
-    stores: [
-        // TODO: add stores here
-    ],
-    
-    launch: function () {
-        // TODO - Launch the application
+    controllers: [ 'Root' ],
+
+    stores: [ 'Users' ],
+
+    launch: function() {
     }
 });

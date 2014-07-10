@@ -15,5 +15,11 @@ Ext.define('extjs5.view.main.MainModel', {
         fullName: function(get) {
             return get('firstName') + ' ' + get('lastName');
         }
+    },
+
+    stores: {
+        users: {
+            source: 'users'
+        }
     }
 });

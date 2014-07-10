@@ -16,5 +16,17 @@ Ext.application({
     // of merge conflicts when upgrading to new versions of Sencha Cmd.
     // -------------------------------------------------------------------------
 
-    appProperty : 'app'
+    appProperty : 'app',
+
+    listen: {
+        controller: {
+            '#': {
+                unmatchedroute: 'onUnmatchedRoute'
+            }
+        }
+    },
+
+    onUnmatchedRoute: function(hash) {
+        console.log('Invalid route: ' + hash);
+    }
 });

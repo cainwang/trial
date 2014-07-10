@@ -1,0 +1,21 @@
+{
+  "success": "true",
+  "result": [
+    {
+      "id": 1,
+      "name": "Philip J. Fry"
+    },
+    {
+      "id": 2,
+      "name": "Hubert Farnsworth"
+    },
+    {
+      "id": 3,
+      "name": "Turanga Leela"
+    },
+    {
+      "id": 4,
+      "name": "Amy Wong"
+    }
+  ]
+}
