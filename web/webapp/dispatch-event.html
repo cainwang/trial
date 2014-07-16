@@ -11,22 +11,20 @@ function init() {
         alert('Bang: ' + event.detail);
     });
 
-    var event;
-    if (document.createEvent) {
+    var event, detail = 'big bang';
+
+    if (typeof window.CustomEvent == 'function') {
+        event = new CustomEvent('bang', {
+            detail: detail
+        });
+    } else if (document.createEvent) {
         event = document.createEvent('Event');
         event.initEvent('bang', true, false);
-        event.detail = 'bang event details';
-    } else if (window.CustomEvent) {
-        alert('custom event');
-        event = new CustomEvent('bang');
-    }
+        event.detail = detail;
+    } 
 
-    if (event) {
-        if (div.dispatchEvent) {
-            div.dispatchEvent(event);
-        } else {
-            div.fireEvent(event);
-        }
+    if (event && div.dispatchEvent) {
+        div.dispatchEvent(event);
     }
 }
 </script>
