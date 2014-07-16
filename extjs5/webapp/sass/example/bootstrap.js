@@ -2315,8 +2315,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "ExtThemeNeptune.toolbar.Paging": [],
   "ExtThemeNeptune.toolbar.Toolbar": [],
   "extjs5.Application": [],
-  "extjs5.controller.Main": [],
   "extjs5.controller.Root": [],
+  "extjs5.model.Base": [],
+  "extjs5.model.User": [],
+  "extjs5.store.Users": [],
+  "extjs5.view.content.ContentController": [],
+  "extjs5.view.content.ContentPane": [],
   "extjs5.view.main.Main": [],
   "extjs5.view.main.MainController": [],
   "extjs5.view.main.MainModel": []
@@ -3650,8 +3654,16 @@ Ext.ClassManager.addNameAliasMappings({
   "ExtThemeNeptune.toolbar.Paging": [],
   "ExtThemeNeptune.toolbar.Toolbar": [],
   "extjs5.Application": [],
-  "extjs5.controller.Main": [],
   "extjs5.controller.Root": [],
+  "extjs5.model.Base": [],
+  "extjs5.model.User": [],
+  "extjs5.store.Users": [],
+  "extjs5.view.content.ContentController": [
+    "controller.content"
+  ],
+  "extjs5.view.content.ContentPane": [
+    "widget.contentPane"
+  ],
   "extjs5.view.main.Main": [
     "widget.app-main"
   ],

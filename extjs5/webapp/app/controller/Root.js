@@ -4,5 +4,5 @@
 Ext.define('extjs5.controller.Root', {
     extend: 'Ext.app.Controller',
 
-    models: [ 'User' ]
+    models: [ 'User', 'Role' ]
 });

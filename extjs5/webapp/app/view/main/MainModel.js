@@ -19,7 +19,7 @@ Ext.define('extjs5.view.main.MainModel', {
 
     stores: {
         users: {
-            source: 'users'
+           source: 'Users'
         }
     }
 });

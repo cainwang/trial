@@ -3,19 +3,35 @@
   "result": [
     {
       "id": 1,
-      "name": "Philip J. Fry"
+      "name": "Philip J. Fry",
+      roles: [ {
+          id: '1',
+          name: 'admin'
+      } ]
     },
     {
       "id": 2,
-      "name": "Hubert Farnsworth"
+      "name": "Hubert Farnsworth",
+      roles: [ {
+          id: '1',
+          name: 'admin'
+      } ]
     },
     {
       "id": 3,
-      "name": "Turanga Leela"
+      "name": "Turanga Leela",
+      roles: [ {
+          id: '1',
+          name: 'admin'
+      } ]
     },
     {
       "id": 4,
-      "name": "Amy Wong"
+      "name": "Amy Wong",
+      roles: [ {
+          id: '1',
+          name: 'admin'
+      } ]
     }
   ]
 }

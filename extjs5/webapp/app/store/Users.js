@@ -3,9 +3,14 @@ Ext.define('extjs5.store.Users', {
 
     model: 'extjs5.model.User',
     storeId: 'users',
+    autoLoad: true,
 
     proxy: {
         type: 'ajax',
-        url: 'api/users'
+        url: 'api/users',
+        reader: {
+            type: 'json',
+            rootProperty: 'result'
+        }
     }
 });

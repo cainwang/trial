@@ -12,9 +12,7 @@ Ext.define('extjs5.view.main.Main', {
 
     controller: 'main',
 
-    viewModel: {
-        type: 'main'
-    },
+    viewModel: 'main',
 
     layout: {
         type: 'border'
@@ -52,6 +50,9 @@ Ext.define('extjs5.view.main.Main', {
                 text: 'Refresh',
                 reference: 'refreshkButton',
                 handler: 'onRefreshButton'
+            }, {
+                text: 'Add',
+                handler: 'addRole'
             } ],
             layout: 'fit',
             items: me.getUserGrid()
@@ -73,12 +74,14 @@ Ext.define('extjs5.view.main.Main', {
     getUserGrid: function() {
         return {
             xtype: 'grid',
+            autoScroll: true,
             bind: {
                 store: '{users}'
             },
             columns: [ {
                 text: 'Name',
-                dataIndex: 'name'
+                dataIndex: 'name',
+                flex: 1
             } ]
         };
     }
