@@ -9,7 +9,12 @@ function initFile(callback) {
         fs.unlinkSync(fileName);
     }
 
-    fs.writeFile(fileName, content, function(err) {
+    var largeContent = '';
+    for (var i = 0; i < 1000 * 10; i ++) {
+        largeContent += content;
+    }
+
+    fs.writeFile(fileName, largeContent, function(err) {
         if (err) {
             throw err;
         }
