@@ -1,0 +1,4 @@
+
+var proxy = new Proxy({}, {
+
+});

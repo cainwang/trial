@@ -1,7 +1,6 @@
 /**
- * This class is the main view for the application. It is specified in app.js as the
- * "autoCreateViewport" property. That setting automatically applies the "viewport" plugin to
- * promote that instance of this class to the body element.
+ * This class is the main view for the application. It is specified in app.js as the "autoCreateViewport" property. That
+ * setting automatically applies the "viewport" plugin to promote that instance of this class to the body element.
  *
  * TODO - Replace this content of this view to suite the needs of your application.
  */
@@ -12,7 +11,9 @@ Ext.define('extjs5.view.main.Main', {
 
     controller: 'main',
 
-    viewModel: 'main',
+    viewModel: {
+        type: 'main'
+    },
 
     layout: {
         type: 'border'
@@ -63,8 +64,27 @@ Ext.define('extjs5.view.main.Main', {
                 title: 'Tab 1',
                 html: '<h2>Content appropriate for the current navigation.</h2>'
             }, {
+                bind: {
+                    title: '{selectedName}'
+                },
                 title: 'Light',
-                xtype: 'contentPane'
+                xtype: 'contentPane',
+                items: [ {
+                    xtype: 'combo',
+                    store: Ext.create('Ext.data.Store', {
+                        model: 'extjs5.model.User',
+                        data: [ {
+                            name: 'Test',
+                            value: 'value'
+                        } ]
+                    }),
+                    queryMode: 'local',
+                    displayField: 'name',
+                    valueField: 'value',
+                    bind: {
+                        value: '{selectedName}'
+                    }
+                } ]
             } ]
         } ];
 

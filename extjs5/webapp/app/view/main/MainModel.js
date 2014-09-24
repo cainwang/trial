@@ -8,7 +8,8 @@ Ext.define('extjs5.view.main.MainModel', {
 
     data: {
         firstName: 'Cain',
-        lastName: 'Templar'
+        lastName: 'Templar',
+        selectedName: 'Cain'
     },
 
     formulas: {
