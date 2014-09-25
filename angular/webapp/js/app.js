@@ -1,11 +1,16 @@
 var app = angular.module('app', ['ngRoute', 'ui.bootstrap', 'controllers']);
 
 app.config(function($routeProvider) {
-    console.log('test');
-    $routeProvider.when('/modal', {
+    $routeProvider.otherwise({
+        redirectTo: '/modal'
+    }).when('/modal', {
         templateUrl: 'tpl/modal.html',
         controller: 'ModalController'
-    }).otherwise({
-        redirectTo: '/modal'
+    }).when('/tabs', {
+        templateUrl: 'tpl/tabs.html',
+        controller: 'TabsController'
+    }).when('/alerts', {
+        templateUrl: 'tpl/alerts.html',
+        controller: 'AlertsController'
     });
 });

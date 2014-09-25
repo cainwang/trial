@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,8 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
+
+    <link rel="stylesheet" href="resources/styles.css" />
 
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -22,8 +24,10 @@
     <script type="text/javascript" src="js/controllers.js"></script>
 </head>
 
-<body ng-app>
-    <div ng-view></div>
+<body>
+    <div class="container-fluid body-container">
+        <div ng-view></div>
+    </div>
 </body>
 
 </html>

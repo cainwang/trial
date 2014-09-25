@@ -1,0 +1,9 @@
+<tabset>
+    <tab ng-repeat="tab in data.tabs" heading="{{tab.heading}}" select="selectTab($index)">
+        <div class="tab-body">{{tab.content}}</div>
+    </tab>
+</tabset>
+
+<div>
+    {{data.content}}
+</div>
