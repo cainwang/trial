@@ -1,11 +1,16 @@
 /** @jsx React.DOM */
 
 var CommentBox = React.createClass({
+    propTypes: {
+        url: React.PropTypes.string
+    },
+
     getInitialState: function() {
         return {
             comments: []
         };
     },
+
     loadComments: function() {
         var me = this;
 
@@ -22,9 +27,11 @@ var CommentBox = React.createClass({
             }
         });
     },
+
     componentDidMount: function() {
         this.loadComments();
     },
+
     updateComments: function(comment) {
         var comments = this.state.comments;
         comments.push(comment);
@@ -33,13 +40,14 @@ var CommentBox = React.createClass({
             comments: comments
         });
     },
+
     render: function() {
         return (
             <div className="CommentBox">
                 <h1>Comments</h1>
 
-                <CommentList comments={this.state.comments}/>
-                <CommentForm onPostComment={this.updateComments}/>
+                <CommentList comments={this.state.comments} />
+                <CommentForm onPostComment={this.updateComments} />
             </div>
         );
     }
@@ -51,9 +59,7 @@ var CommentList = React.createClass({
 
         var commentNodes = comments.map(function(comment) {
             return (
-                <Comment author={comment.author}>
-                    {comment.text}
-                </Comment>
+                <Comment comment={comment} />
             );
         });
 
@@ -67,13 +73,11 @@ var CommentList = React.createClass({
 
 var CommentForm = React.createClass({
     postComment: function() {
-        var authorNode = this.refs.author.getDOMNode();
+        var authorNode = this.refs.author.getDOMNode(); 
         var textNode = this.refs.text.getDOMNode();
 
         var author = authorNode.value.trim();
         var text = textNode.value.trim();
-
-        console.log('comment: ' + text + ' from ' + author);
 
         this.props.onPostComment({
             author: author,
@@ -89,26 +93,52 @@ var CommentForm = React.createClass({
             <div className="commentForm">
                 <input placeholder="Your name" ref="author" />
                 <input placeholder="Say something ..." ref="text" />
-                <button onClick={this.postComment}>Post</button>
+                <Button onClick={this.postComment}>Post</Button>
             </div>
         );
     }
 });
 
-var Comment = React.createClass({
+var Button = React.createClass({
     render: function() {
+        return this.transferPropsTo(
+            <button>{this.props.children}</button>
+        );
+    }
+});
+
+var Comment = React.createClass({
+    getInitialState: function() {
+        return {
+            like: this.props.comment.liked
+        };
+    },
+
+    like: function(e) {
+        e.preventDefault();
+
+        var comment = this.state;
+        comment.liked = !comment.liked;
+
+        this.setState({liked: comment.liked});
+    },
+
+    render: function() {
+        var like = this.state.liked ? 'Like' : 'Unlike'
+
         return (
             <div className="comment">
                 <h2 className="commentAuthor">
-                    {this.props.author}
+                    {this.props.comment.author}
                 </h2>
-                {this.props.children}
+                <p>{this.props.comment.text}</p>
+                <a onClick={this.like} href="#">{like}</a>
             </div>
         );
     }
 });
 
 React.renderComponent(
-    <CommentBox url="data/comments.json"/>,
+    <CommentBox url="data/comments.json" />,
     document.getElementById('content')
 );
