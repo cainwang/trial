@@ -64,27 +64,8 @@ Ext.define('extjs5.view.main.Main', {
                 title: 'Tab 1',
                 html: '<h2>Content appropriate for the current navigation.</h2>'
             }, {
-                bind: {
-                    title: '{selectedName}'
-                },
                 title: 'Light',
-                xtype: 'contentPane',
-                items: [ {
-                    xtype: 'combo',
-                    store: Ext.create('Ext.data.Store', {
-                        model: 'extjs5.model.User',
-                        data: [ {
-                            name: 'Test',
-                            value: 'value'
-                        } ]
-                    }),
-                    queryMode: 'local',
-                    displayField: 'name',
-                    valueField: 'value',
-                    bind: {
-                        value: '{selectedName}'
-                    }
-                } ]
+                xtype: 'contentPane'
             } ]
         } ];
 
