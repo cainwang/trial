@@ -13,3 +13,6 @@
 .tab-body {
   padding: 20px;
 }
+.feature-list {
+  list-style-type: none;
+}

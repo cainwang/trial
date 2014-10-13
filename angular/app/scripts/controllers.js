@@ -75,6 +75,20 @@ ctrls.controller('AlertsController', function($scope) {
 
     $scope.closeAlert = function(alert, index) {
         $scope.data.alerts.splice(index, 1);
-        console.log('Alert dismissed: ' + alert.message);
+    };
+});
+
+ctrls.controller('FeaturesController', function($scope) {
+    $scope.data = {
+        features: [ {
+            name: 'Alerts',
+            url: '#/alerts'
+        }, {
+            name: 'Modals',
+            url: '#/modals'
+        }, {
+            name: 'Tabs',
+            url: '#/tabs'
+        } ]
     };
 });
