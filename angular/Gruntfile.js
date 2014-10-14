@@ -5,6 +5,9 @@ module.exports = function(grunt) {
         appDir: 'app',
         buildDir: 'dist',
         wiredep: {
+            options: {
+                exclude: [/jquery.js/, /bootstrap.js/]
+            },
             target: {
                 src: '<%=appDir%>/index.html'
             }
@@ -13,7 +16,7 @@ module.exports = function(grunt) {
             options: {
                 reporter: require('jshint-stylish')
             },
-            all: ["<%=appDir%>/scripts/**/*.js"]
+            all: ['<%=appDir%>/scripts/**/*.js']
         },
         less: {
             options: {
