@@ -1,5 +1,6 @@
-<div ng-controller="FeaturesController">
-    <ul class="feature-list">
+<div class="feature-list-panel panel panel-default" ng-controller="FeaturesController">
+    <div class="panel-heading">Features</div>
+    <ul class="feature-list panel-body">
         <li ng-repeat="feature in data.features">
             <a href="{{feature.url}}">{{feature.name}}</a>
         </li>

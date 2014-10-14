@@ -6,6 +6,7 @@
 }
 .body-container {
   padding: 20px;
+  height: 100%;
 }
 .modal-body li a {
   cursor: pointer;
@@ -13,6 +14,16 @@
 .tab-body {
   padding: 20px;
 }
+.feature-list-container {
+  height: 100%;
+}
+.feature-list-panel {
+  height: 100%;
+}
 .feature-list {
   list-style-type: none;
+}
+html,
+body {
+  height: 100%;
 }
