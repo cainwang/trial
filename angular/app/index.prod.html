@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="resources/styles.vendor.css" />
     <link rel="stylesheet" href="resources/styles.css" />
 
-    <script type="text/javascript" src="js/vendor-all.min.js"></script>
-    <script type="text/javascript" src="js/app-all.min.js"></script>
+    <script type="text/javascript" src="scripts/vendor-all.min.js"></script>
+    <script type="text/javascript" src="scripts/app-all.min.js"></script>
 </head>
 
 <body>
     <div class="container-fluid body-container">
-        <div ng-view></div>
+        <div class="col-lg-2 feature-list-container" ng-include="'tpl/features.html'"></div>
+        <div class="col-lg-10" ng-view></div>
     </div>
 </body>
 

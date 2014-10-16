@@ -4,6 +4,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         appDir: 'app',
         buildDir: 'dist',
+        bowerDir: '<%=appDir%>/bower_components',
         wiredep: {
             options: {
                 exclude: [/jquery.js/, /bootstrap.js/]
@@ -38,15 +39,27 @@ module.exports = function(grunt) {
         },
         copy: {
             prod: {
-                files: {
-                    '<%=buildDir%>/index.html': '<%=appDir%>/index.prod.html'
-                }
+                files: [{
+                    src: '<%=appDir%>/index.prod.html',
+                    dest: '<%=buildDir%>/index.html'
+                }, {
+                    expand: true,
+                    cwd: '<%=appDir%>/tpl/',
+                    src: '**/*.html',
+                    dest: '<%=buildDir%>/tpl'
+                }]
             }
         },
         concat: {
             prod: {
                 files: {
-                    '<%=buildDir%>/scripts/app-all.js': '<%=appDir%>/scripts/**/*.js'
+                    '<%=buildDir%>/scripts/app-all.js': '<%=appDir%>/scripts/**/*.js',
+                    '<%=buildDir%>/scripts/vendor-all.js': ['<%=bowerDir%>/angular/angular.min.js',
+                        '<%=bowerDir%>/angular-resource/angular-resource.min.js',
+                        '<%=bowerDir%>/angular-bootstrap/ui-bootstrap-tpls.min.js',
+                        '<%=bowerDir%>/angular-route/angular-route.min.js'
+                    ],
+                    '<%=buildDir%>/resources/styles.vendor.css': '<%=bowerDir%>/bootstrap/dist/css/bootstrap.min.css'
                 }
             }
         },
@@ -63,11 +76,15 @@ module.exports = function(grunt) {
         uglify: {
             prod: {
                 files: {
-                    '<%=buildDir%>/scripts/app-all.min.js': '<%=buildDir%>/scripts/app-all.js'
+                    '<%=buildDir%>/scripts/app-all.min.js': '<%=buildDir%>/scripts/app-all.js',
+                    '<%=buildDir%>/scripts/vendor-all.min.js': '<%=buildDir%>/scripts/vendor-all.js'
                 }
             }
         },
         clean: {
+            options: {
+                force: true
+            },
             target: {
                 src: '<%=buildDir%>'
             }
