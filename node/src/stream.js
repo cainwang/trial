@@ -32,10 +32,6 @@ function initFile(callback) {
     });
 }
 
-function pipe() {
-    input.pipe(process.stdout);
-}
-
 function readStream() {
     console.log('Reading file input stream ...');
     var input = fs.createReadStream('target.txt');
