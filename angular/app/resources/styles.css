@@ -17,13 +17,19 @@
 .feature-list-container {
   height: 100%;
 }
-.feature-list-panel {
+.feature-list-container .feature-list-panel {
   height: 100%;
 }
-.feature-list {
+.feature-list-container .panel-body {
+  padding: 0;
+}
+.feature-list-container .feature-list {
   list-style-type: none;
 }
 html,
 body {
   height: 100%;
+}
+.err {
+  background-color: red !important;
 }

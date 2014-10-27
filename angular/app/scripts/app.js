@@ -2,8 +2,8 @@ var app = angular.module('app', ['ngRoute', 'ui.bootstrap', 'controllers']);
 
 app.config(function($routeProvider) {
     $routeProvider.otherwise({
-        redirectTo: '/modal'
-    }).when('/modal', {
+        redirectTo: '/modals'
+    }).when('/modals', {
         templateUrl: 'tpl/modal.html',
         controller: 'ModalController'
     }).when('/tabs', {
@@ -12,5 +12,8 @@ app.config(function($routeProvider) {
     }).when('/alerts', {
         templateUrl: 'tpl/alerts.html',
         controller: 'AlertsController'
+    }).when('/buttons', {
+        templateUrl: 'tpl/buttons.html',
+        cotnroller: 'ButtonsController'
     });
 });

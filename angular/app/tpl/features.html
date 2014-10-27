@@ -1,8 +1,8 @@
 <div class="feature-list-panel panel panel-default" ng-controller="FeaturesController">
     <div class="panel-heading">Features</div>
-    <ul class="feature-list panel-body">
-        <li ng-repeat="feature in data.features">
-            <a href="{{feature.url}}">{{feature.name}}</a>
-        </li>
-    </ul>
+    <div class="feature-list list-group panel-body">
+        <a class="list-group-item" ng-repeat="feature in data.features" ng-class="{active: feature.selected}" href="#{{feature.path}}" ng-click="updateFeatureSelection(feature.path)">
+            {{feature.name}}
+        </a>
+    </div>
 </div>

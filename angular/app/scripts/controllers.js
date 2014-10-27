@@ -52,7 +52,7 @@ ctrls.controller('TabsController', function($scope) {
     };
 
     $scope.selectTab = function(index) {
-        $scope.data.content = 'Tab ' + index + ' is selected.';
+        $scope.data.content = 'Tab ' + index;
     };
 });
 
@@ -78,17 +78,48 @@ ctrls.controller('AlertsController', function($scope) {
     };
 });
 
-ctrls.controller('FeaturesController', function($scope) {
+ctrls.controller('FeaturesController', function($scope, $location) {
+    var features = [{
+        name: 'Alerts',
+        path: '/alerts'
+    }, {
+        name: 'Modals',
+        path: '/modals'
+    }, {
+        name: 'Tabs',
+        path: '/tabs'
+    }, {
+        name: 'Buttons',
+        path: '/buttons'
+    }];
+
+    function updateFeatureSelection(path) {
+        var features = $scope.data.features;
+
+        features.forEach(function(feature) {
+            delete feature.selected;
+
+            if (feature.path == path) {
+                feature.selected = true;
+            }
+        });
+    }
+
     $scope.data = {
-        features: [ {
-            name: 'Alerts',
-            url: '#/alerts'
-        }, {
-            name: 'Modals',
-            url: '#/modals'
-        }, {
-            name: 'Tabs',
-            url: '#/tabs'
-        } ]
+        features: features
     };
+    $scope.updateFeatureSelection = updateFeatureSelection;
+
+    updateFeatureSelection($location.path());
+});
+
+ctrls.controller('ButtonsController', function($scope) {
+    $scope.data = {
+        selectionModel: {
+            left: false,
+            middle: true,
+            right: false
+        }
+    };
+    this.toggleEvent = 'test';
 });
