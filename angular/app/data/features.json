@@ -1,0 +1,13 @@
+[{
+    "name": "Alerts",
+    "path": "/alerts"
+}, {
+    "name": "Modals",
+    "path": "/modals"
+}, {
+    "name": "Tabs",
+    "path": "/tabs"
+}, {
+    "name": "Buttons",
+    "path": "/buttons"
+}]

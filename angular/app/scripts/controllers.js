@@ -78,21 +78,7 @@ ctrls.controller('AlertsController', function($scope) {
     };
 });
 
-ctrls.controller('FeaturesController', function($scope, $location) {
-    var features = [{
-        name: 'Alerts',
-        path: '/alerts'
-    }, {
-        name: 'Modals',
-        path: '/modals'
-    }, {
-        name: 'Tabs',
-        path: '/tabs'
-    }, {
-        name: 'Buttons',
-        path: '/buttons'
-    }];
-
+ctrls.controller('FeaturesController', function($scope, $location, $http) {
     function updateFeatureSelection(path) {
         var features = $scope.data.features;
 
@@ -105,12 +91,13 @@ ctrls.controller('FeaturesController', function($scope, $location) {
         });
     }
 
-    $scope.data = {
-        features: features
-    };
-    $scope.updateFeatureSelection = updateFeatureSelection;
+    $http.get('data/features.json').success(function(features) {
+        $scope.data.features = features;
+        updateFeatureSelection($location.path());
+    });
 
-    updateFeatureSelection($location.path());
+    $scope.data = {};
+    $scope.updateFeatureSelection = updateFeatureSelection;
 });
 
 ctrls.controller('ButtonsController', function($scope) {
@@ -121,5 +108,8 @@ ctrls.controller('ButtonsController', function($scope) {
             right: false
         }
     };
-    this.toggleEvent = 'test';
+
+    // Fix the toggle button exception.
+    this.toggleEvent = 'click';
+    this.activeClass = 'active';
 });
