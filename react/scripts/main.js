@@ -22,7 +22,7 @@ var Home = React.createClass({
 var App = React.createClass({
     render: function() {
         return (
-            <Locations hash>
+            <Locations hash className="content-box">
                 <Location path="/comments" handler={CommentBox}></Location>
                 <NotFound handler={Home} />
             </Locations>

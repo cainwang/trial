@@ -48,12 +48,24 @@ var CommentBox = React.createClass({
         });
     },
 
+    deleteComment: function(comment) {
+        var comments = this.state.comments;
+
+        var index = comments.indexOf(comment);
+        if (index != -1) {
+            comments.splice(index, 1);
+            this.setState({
+                comments: comments
+            });
+        }
+    },
+
     render: function() {
         return (
-            <div className="CommentBox">
+            <div className="comment-box">
                 <h1>Comments</h1>
 
-                <CommentList comments={this.state.comments} />
+                <CommentList comments={this.state.comments} onDeleteComment={this.deleteComment} />
                 <CommentForm onPostComment={this.updateComments} />
             </div>
         );
@@ -62,16 +74,17 @@ var CommentBox = React.createClass({
 
 var CommentList = React.createClass({
     render: function() {
-        var comments = this.props.comments;
+        var me = this;
+        var comments = me.props.comments;
 
         var commentNodes = comments.map(function(comment) {
             return (
-                <Comment comment={comment} />
+                <Comment comment={comment} onDeleteComment={me.props.onDeleteComment}/>
             );
         });
 
         return (
-            <div className="commentList">
+            <div className="comment-list">
                 {commentNodes}
             </div>
         );
@@ -97,10 +110,10 @@ var CommentForm = React.createClass({
 
     render: function() {
         return (
-            <div className="commentForm">
-                <input placeholder="Your name" ref="author" />
-                <input placeholder="Say something ..." ref="text" />
-                <Button onClick={this.postComment}>Post</Button>
+            <div className="comment-form">
+                <input className="comment-form-item" placeholder="Your name" ref="author" />
+                <input className="comment-form-item" placeholder="Say something ..." ref="text" />
+                <Button className="comment-form-item" onClick={this.postComment}>Post</Button>
             </div>
         );
     }
@@ -109,7 +122,7 @@ var CommentForm = React.createClass({
 var Button = React.createClass({
     render: function() {
         return this.transferPropsTo(
-            <button>{this.props.children}</button>
+            <button className="btn btn-info btn-xs">{this.props.children}</button>
         );
     }
 });
@@ -117,17 +130,23 @@ var Button = React.createClass({
 var Comment = React.createClass({
     getInitialState: function() {
         return {
-            like: this.props.comment.liked
+            liked: this.props.comment.liked
         };
     },
 
     like: function(e) {
         e.preventDefault();
 
-        var comment = this.state;
+        var comment = this.props.comment;
         comment.liked = !comment.liked;
 
         this.setState({liked: comment.liked});
+    },
+
+    deleteComment: function(e) {
+        e.preventDefault();
+
+        this.props.onDeleteComment(this.props.comment);
     },
 
     render: function() {
@@ -139,7 +158,8 @@ var Comment = React.createClass({
                     {this.props.comment.author}
                 </h2>
                 <p>{this.props.comment.text}</p>
-                <a onClick={this.like} href="#">{like}</a>
+                <a className="comment-action-item" onClick={this.like} href="#">{like}</a>
+                <a className="comment-action-item" onClick={this.deleteComment} href="#">Delete</a>
             </div>
         );
     }
