@@ -15,5 +15,14 @@ app.config(function($routeProvider) {
     }).when('/buttons', {
         templateUrl: 'tpl/buttons.html',
         cotnroller: 'ButtonsController'
+    }).when('/location', {
+        templateUrl: 'tpl/location.html',
+        controller: 'LocationController'
+    });
+});
+
+app.run(function($rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function() {
+        console.log(arguments);
     });
 });

@@ -78,9 +78,9 @@ ctrls.controller('AlertsController', function($scope) {
     };
 });
 
-ctrls.controller('FeaturesController', function($scope, $location, $http) {
-    function updateFeatureSelection(path) {
-        var features = $scope.data.features;
+ctrls.controller('FeaturesController', function($scope, $rootScope, $location, $http) {
+    function updateFeatureSelection(features) {
+        var path = $location.path();
 
         features.forEach(function(feature) {
             delete feature.selected;
@@ -91,13 +91,19 @@ ctrls.controller('FeaturesController', function($scope, $location, $http) {
         });
     }
 
+    $rootScope.$on('$routeChangeStart', function() {
+        var features = $scope.data.features;
+        if (features) {
+            updateFeatureSelection(features);
+        }
+    });
+
     $http.get('data/features.json').success(function(features) {
         $scope.data.features = features;
-        updateFeatureSelection($location.path());
+        updateFeatureSelection(features);
     });
 
     $scope.data = {};
-    $scope.updateFeatureSelection = updateFeatureSelection;
 });
 
 ctrls.controller('ButtonsController', function($scope) {
@@ -112,4 +118,19 @@ ctrls.controller('ButtonsController', function($scope) {
     // Fix the toggle button exception.
     this.toggleEvent = 'click';
     this.activeClass = 'active';
+});
+
+ctrls.controller('LocationController', function($scope, $location) {
+    $scope.$location = $location;
+
+    $scope.changeToRoot = function() {
+        var ret = $location.path('/');
+        console.log(ret);
+    };
+    $scope.changeSearch = function() {
+        $location.search('key', 'value');
+    };
+    $scope.changeHash = function() {
+        $location.hash('hashValue');
+    };
 });

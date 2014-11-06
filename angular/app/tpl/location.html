@@ -1,0 +1,15 @@
+<p>
+    path: {{$location.path()}}
+    <a ng-click="changeToRoot()">Change path to /</a>
+</p>
+<p>
+    absUrl(): {{$location.absUrl()}}
+</p>
+<p>
+    search(): {{$location.search()}}
+    <a ng-click="changeSearch()">Change Search</a>
+</p>
+<p>
+    hash(): {{$location.hash()}}
+    <a ng-click="changeHash()">Change Hash</a>
+</p>

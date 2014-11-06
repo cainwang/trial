@@ -1,35 +1,31 @@
-.nav a,
-.pagination a,
-.carousel a,
-.panel-title a {
-  cursor: pointer;
+a, .nav a, .pagination a, .carousel a, .panel-title a {
+    cursor: pointer;
 }
 .body-container {
-  padding: 20px;
-  height: 100%;
+    padding: 20px;
+    height: 100%;
 }
 .modal-body li a {
-  cursor: pointer;
+    cursor: pointer;
 }
 .tab-body {
-  padding: 20px;
+    padding: 20px;
 }
 .feature-list-container {
-  height: 100%;
+    height: 100%;
 }
 .feature-list-container .feature-list-panel {
-  height: 100%;
+    height: 100%;
 }
 .feature-list-container .panel-body {
-  padding: 0;
+    padding: 0;
 }
 .feature-list-container .feature-list {
-  list-style-type: none;
+    list-style-type: none;
 }
-html,
-body {
-  height: 100%;
+html, body {
+    height: 100%;
 }
 .err {
-  background-color: red !important;
+    background-color: red !important;
 }
