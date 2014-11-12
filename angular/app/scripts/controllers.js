@@ -134,3 +134,22 @@ ctrls.controller('LocationController', function($scope, $location) {
         $location.hash('hashValue');
     };
 });
+
+ctrls.controller('DirectivesController', function($scope, $filter) {
+    $scope.data = {
+        name: 'Cain',
+        addr: {
+            street: '33 Heading St',
+            city: 'San Jose',
+            state: 'CA',
+            zip: '95133',
+            type: 'Residence'
+        }
+    };
+
+    $scope.openMap = function(addr) {
+        var formattedAddr = $filter('gmapAddr')(addr);
+        var url = 'https://www.google.com/maps/search/' + formattedAddr;
+        window.open(url);
+    };
+});

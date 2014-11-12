@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ui.bootstrap', 'controllers']);
+var app = angular.module('app', ['ngRoute', 'ui.bootstrap', 'controllers', 'directives', 'filters']);
 
 app.config(function($routeProvider) {
     $routeProvider.otherwise({
@@ -18,11 +18,14 @@ app.config(function($routeProvider) {
     }).when('/location', {
         templateUrl: 'tpl/location.html',
         controller: 'LocationController'
+    }).when('/directives', {
+        templateUrl: 'tpl/directives.html',
+        controller: 'DirectivesController'
     });
 });
 
 app.run(function($rootScope) {
     $rootScope.$on('$routeChangeSuccess', function() {
-        console.log(arguments);
+        console.log('Route change success', arguments);
     });
 });

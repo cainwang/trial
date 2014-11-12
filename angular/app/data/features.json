@@ -13,4 +13,7 @@
 }, {
     "name": "Location",
     "path": "/location"
+}, {
+    "name": "Custom Directives",
+    "path": "/directives"
 }]

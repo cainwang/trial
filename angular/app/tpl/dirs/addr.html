@@ -1,0 +1,8 @@
+<div>{{name}}</div>
+<div>{{addr.street}}</div>
+<div>{{addr.city}} {{addr.state}} {{addr.zip}}</div>
+<div>{{type}}</div>
+<div>
+    <a ng-href="https://www.google.com/maps/search/{{addr | gmapAddr}}">Find</a>
+    <button class="btn btn-primary" ng-click="open()">Open map in new window</button>
+</div>
