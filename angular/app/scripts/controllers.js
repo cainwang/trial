@@ -78,7 +78,7 @@ ctrls.controller('AlertsController', function($scope) {
     };
 });
 
-ctrls.controller('FeaturesController', function($scope, $rootScope, $location, $http) {
+ctrls.controller('FeaturesController', function($scope, $rootScope, $location, Features) {
     function updateFeatureSelection(features) {
         var path = $location.path();
 
@@ -98,7 +98,7 @@ ctrls.controller('FeaturesController', function($scope, $rootScope, $location, $
         }
     });
 
-    $http.get('data/features.json').success(function(features) {
+    Features.get().success(function(features) {
         $scope.data.features = features;
         updateFeatureSelection(features);
     });

@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ui.bootstrap', 'controllers', 'directives', 'filters']);
+var app = angular.module('app', ['ngRoute', 'ngResource', 'ui.bootstrap', 'controllers', 'directives', 'filters', 'services']);
 
 app.config(function($routeProvider) {
     $routeProvider.otherwise({
@@ -24,8 +24,13 @@ app.config(function($routeProvider) {
     });
 });
 
-app.run(function($rootScope) {
+app.run(function($rootScope, APP_NAME, Visits) {
     $rootScope.$on('$routeChangeSuccess', function() {
-        console.log('Route change success', arguments);
+        console.log(APP_NAME, 'Route change success', ' visits', Visits.visit());
     });
+});
+
+app.constant('APP_NAME', 'Angular Trial');
+app.config(function(VisitsProvider) {
+    VisitsProvider.setVisits(32);
 });
