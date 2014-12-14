@@ -7,7 +7,7 @@ var watchify = require('watchify');
 gulp.task('browserify', function() {
     var b = browserify();
     b.transform(reactify);
-    b.add('./scripts/main.js');
+    b.add('./scripts/app.js');
 
     return b.bundle().pipe(source('bundle.js')).pipe(gulp.dest('./build'));
 });
@@ -16,7 +16,7 @@ gulp.task('watchify', function() {
     var bundler = watchify({
         watch: true
     });
-    bundler.add('./scripts/main.js');
+    bundler.add('./scripts/app.js');
     bundler.transform(reactify);
 
     function rebundle() {

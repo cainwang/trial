@@ -1,11 +1,43 @@
-.content-box {
+.chrome {
+    padding: 6px;
+}
+
+.header {
+    height: 30px;
+    border-bottom: 1px solid gray;
+}
+
+.header ul {
+    padding-left: 10px;
+}
+
+.header li {
+    float: left;
+    margin-right: 10px;
+}
+
+.header ul {
+    list-style-type: none;
+}
+
+.content {
+    height: 100%;
+    padding-top: 30px;
+}
+
+.comment-box {
     padding: 10px;
 }
 
-.comment-form-item {
-    margin: 10px;
+.comment-box .comment-form {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.comment-action-item {
+.comment-box .comment-form-item {
+    margin-right: 10px;
+}
+
+.comment-box .comment-action-item {
     margin-right: 5px;
 }
