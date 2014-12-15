@@ -1,62 +1,36 @@
 var React = require('react');
+var CommentStore = require('../store/CommentStore');
+
+function getCommentState() {
+    return {
+        comments: CommentStore.getAll()
+    };
+}
 
 var CommentBox = React.createClass({
-    getDefaultProps: function() {
-        return {
-            url: 'data/comments.json'
-        };
-    },
-
-    propTypes: {
-        url: React.PropTypes.string
-    },
-
     getInitialState: function() {
-        return {
-            comments: []
-        };
-    },
-
-    loadComments: function() {
-        var me = this;
-
-        $.ajax({
-            url: this.props.url,
-            dataType: 'json',
-            success: function(data) {
-                me.setState({
-                    comments: data
-                });
-            },
-            error: function(xhr, status, err) {
-                console.log(me.props.url, status, err.toString());
-            }
-        });
+        return getCommentState();
     },
 
     componentDidMount: function() {
-        this.loadComments();
+        CommentStore.addChangeListener(this.commentsChanged);
+        CommentStore.load();
     },
 
-    updateComments: function(comment) {
-        var comments = this.state.comments;
-        comments.push(comment);
+    componentWillUnmount: function() {
+        CommentStore.removeChangeListener(this.commentsChanged);
+    },
 
-        this.setState({
-            comments: comments
-        });
+    commentsChanged: function() {
+        this.setState(getCommentState());
+    },
+
+    addComment: function(comment) {
+        CommentStore.add(comment);
     },
 
     deleteComment: function(comment) {
-        var comments = this.state.comments;
-
-        var index = comments.indexOf(comment);
-        if (index != -1) {
-            comments.splice(index, 1);
-            this.setState({
-                comments: comments
-            });
-        }
+        CommentStore.remove(comment);
     },
 
     render: function() {
@@ -65,7 +39,7 @@ var CommentBox = React.createClass({
                 <h1>Comments</h1>
 
                 <CommentList comments={this.state.comments} onDeleteComment={this.deleteComment} />
-                <CommentForm onPostComment={this.updateComments} />
+                <CommentForm onPostComment={this.addComment} />
             </div>
         );
     }
