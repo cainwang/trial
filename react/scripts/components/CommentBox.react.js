@@ -1,5 +1,6 @@
 var React = require('react');
 var CommentStore = require('../store/CommentStore');
+var CommentActions = require('../actions/CommentActions');
 
 function getCommentState() {
     return {
@@ -26,11 +27,7 @@ var CommentBox = React.createClass({
     },
 
     addComment: function(comment) {
-        CommentStore.add(comment);
-    },
-
-    deleteComment: function(comment) {
-        CommentStore.remove(comment);
+        CommentActions.add(comment);
     },
 
     render: function() {
@@ -38,7 +35,7 @@ var CommentBox = React.createClass({
             <div className="comment-box">
                 <h1>Comments</h1>
 
-                <CommentList comments={this.state.comments} onDeleteComment={this.deleteComment} />
+                <CommentList comments={this.state.comments} />
                 <CommentForm onPostComment={this.addComment} />
             </div>
         );
@@ -52,7 +49,7 @@ var CommentList = React.createClass({
 
         var commentNodes = comments.map(function(comment) {
             return (
-                <Comment comment={comment} onDeleteComment={me.props.onDeleteComment}/>
+                <Comment comment={comment} />
             );
         });
 
@@ -110,20 +107,17 @@ var Comment = React.createClass({
     like: function(e) {
         e.preventDefault();
 
-        var comment = this.props.comment;
-        comment.liked = !comment.liked;
-
-        this.setState({liked: comment.liked});
+        CommentActions.toggleLike(this.props.comment);
     },
 
     deleteComment: function(e) {
         e.preventDefault();
 
-        this.props.onDeleteComment(this.props.comment);
+        CommentActions.remove(this.props.comment);
     },
 
     render: function() {
-        var like = this.state.liked ? 'Like' : 'Unlike'
+        var like = this.props.comment.liked ? 'Unlike' : 'like'
 
         return (
             <div className="comment">

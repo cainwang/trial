@@ -1,5 +1,6 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher.js');
 var EventEmitter = require('events').EventEmitter;
+var Constants = require('../Constants');
 
 var comments = [];
 
@@ -46,6 +47,11 @@ var CommentStore = Object.assign({}, EventEmitter.prototype, {
         }
     },
 
+    toggleLike: function(comment) {
+        comment.liked = !comment.liked;
+        this.emit(CHANGE_EVENT);
+    },
+
     emitChange: function() {
         this.emit(CHANGE_EVENT);
     },
@@ -60,7 +66,21 @@ var CommentStore = Object.assign({}, EventEmitter.prototype, {
 });
 
 AppDispatcher.register(function(action) {
+    var actions = Constants.action.comment;
+    var comment = action.data;
 
+    var handlers = {};
+    handlers[actions.ADD] = function() {
+        CommentStore.add(comment);
+    };
+    handlers[actions.REMOVE] = function() {
+        CommentStore.remove(comment);
+    };
+    handlers[actions.TOGGLE_LIKE] = function() {
+        CommentStore.toggleLike(comment);
+    }
+
+    handlers[action.type]();
 });
 
 module.exports = CommentStore;
